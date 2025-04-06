@@ -1,0 +1,57 @@
+{
+  "name": "python-cell-highlighter",
+  "displayName": "Python Cell Highlighter",
+  "description": "Highlights the current Python cell (delimited by #%%) with custom background color",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.99.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/python-cell-highlighter"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:python"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Python Cell Highlighter",
+      "properties": {
+        "pythonCellHighlighter.backgroundColor": {
+          "type": "string",
+          "default": "rgba(100, 150, 255, 0.3)",
+          "description": "Background color for the current cell"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "pythonCellHighlighter.toggleHighlighting",
+        "title": "Toggle Python Cell Highlighting"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "pythonCellHighlighter.toggleHighlighting",
+        "key": "ctrl+shift+h",
+        "mac": "cmd+shift+h",
+        "when": "editorLangId == python"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "echo Compilation done",
+    "lint": "eslint .",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "eslint": "^8.26.0"
+  }
+}
