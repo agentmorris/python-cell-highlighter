@@ -2,7 +2,7 @@
   "name": "python-cell-highlighter",
   "displayName": "Python Cell Highlighter",
   "description": "Highlights the current Python cell (delimited by #%%) with custom background color",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "engines": {
     "vscode": "^1.99.0"
   },

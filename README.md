@@ -84,9 +84,3 @@ If you want to develop the extension further:
 3. Make your changes to the code
 4. Press F5 to start debugging in a new VS Code window with the extension loaded
 5. Changes can be tested immediately in this window
-
-## Release Notes
-
-### 0.1.0
-
-Initial release of Python Cell Highlighter

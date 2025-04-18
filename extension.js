@@ -69,7 +69,7 @@ function activate(context) {
  * Find cell boundaries from cursor position
  * @param {vscode.TextDocument} document
  * @param {vscode.Position} cursorPosition
- * @returns {Object} cell boundaries
+ * @returns {Object} cell boundaries or null if no cell delimiters found
  */
 function findCellBoundaries(document, cursorPosition) {
     const lineCount = document.lineCount;
@@ -77,6 +77,21 @@ function findCellBoundaries(document, cursorPosition) {
     let endLine = cursorPosition.line;
     
     console.log(`Finding cell boundaries for cursor at line ${cursorPosition.line}`);
+    
+    // Check if document contains any cell delimiters
+    let hasCellDelimiters = false;
+    for (let i = 0; i < lineCount; i++) {
+        if (CELL_DELIMITER.test(document.lineAt(i).text)) {
+            hasCellDelimiters = true;
+            break;
+        }
+    }
+    
+    // If no cell delimiters found, return null
+    if (!hasCellDelimiters) {
+        console.log('No cell delimiters found in document');
+        return null;
+    }
     
     // Check if current line is a delimiter
     const currentLineText = document.lineAt(cursorPosition.line).text;
@@ -139,6 +154,13 @@ function updateHighlighting(editor) {
     
     // Find cell boundaries
     const cellBoundaries = findCellBoundaries(editor.document, cursorPosition);
+    
+    // If no cell boundaries found (no cells in document), don't apply highlighting
+    if (!cellBoundaries) {
+        console.log('No cells found in document, skipping highlighting');
+        return;
+    }
+    
     console.log(`Cell boundaries found: Lines ${cellBoundaries.start.line} to ${cellBoundaries.end.line}`);
     
     // Get color from configuration
