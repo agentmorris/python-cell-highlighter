@@ -5,7 +5,7 @@ let activeDecorationType = null;
 let isHighlightingEnabled = true;
 
 // Cell delimiter pattern - match both #%% and # %% with optional spaces and text after
-const CELL_DELIMITER = /^#\s*%%\s*/;
+const CELL_DELIMITER = /^\s*#\s*%%\s*/;
 
 /**
  * Activate the extension
